@@ -37,10 +37,10 @@ public class Uzol {
 		//TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
 		for(Vozidlo n : vozpark) 
 		{
-			for (int k = 0; k < n.getTyp(); k++)
-			{
-				matica[n.getXsur()][n.getYsur()]=n.getId()
-			}
+			
+			       System.out.println("test "+n.getId());
+			//	matica[n.getXsur()][n.getYsur()]=n.getId()
+			
 			
 		}
 		

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,7 +28,7 @@ public class AI {
     
 	       System.out.println("mriezka je "+xmax+" : "+ymax+"    a pocet vozidel je "+poc_vozidel);
 	   */    
-	       
+		vozpark = new ArrayList<Vozidlo>();
 	       xmax=6;
 	       ymax=6;
 	       pridajvozidlo(new Vozidlo(0,2,2,3,0)); //cislo , dlzka , x, y, vodorvne 0 zvyslo 1
