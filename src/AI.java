@@ -8,6 +8,7 @@ public class AI {
 	private int ymax;
 	private int poc_vozidel;
 	private List<Vozidlo> vozpark ;
+	private List<Uzol> uzle;
 	
 	public AI() {
 		
@@ -29,14 +30,19 @@ public class AI {
 	       System.out.println("mriezka je "+xmax+" : "+ymax+"    a pocet vozidel je "+poc_vozidel);
 	   */    
 		vozpark = new ArrayList<Vozidlo>();
-	       xmax=6;
+		uzle = new ArrayList<Uzol>();
+	       xmax=10;
 	       ymax=6;
-	       pridajvozidlo(new Vozidlo(0,2,2,3,0)); //cislo , dlzka , x, y, vodorvne 0 zvyslo 1
-	       pridajvozidlo(new Vozidlo(1,3,5,3,1));
-	       Uzol zac_uzol = new Uzol(vozpark,xmax,ymax);
+	       pridajvozidlo(new Vozidlo(1,2,2,3,0)); //cislo , dlzka , x, y, vodorvne 0 zvyslo 1
+	       pridajvozidlo(new Vozidlo(2,3,7,3,1));
+	      
+	       Uzol zac_uzol = new Uzol(vozpark,xmax,ymax);    
+	       uzle.add(zac_uzol);
+	       
+	       ries();
 	       
 	
-	       
+	
 	       
 	       
 	      /*
@@ -45,8 +51,7 @@ public class AI {
 			   if (i == 0) 
 			   {
 				   System.out.println(" : ");
-			   }
-					   
+			   }					   
 	    	   pridajvozidlo();
 			
 			}
@@ -55,6 +60,24 @@ public class AI {
 		       
 	       	//scanIn.close();   
 	}
+	Boolean ries()
+	{
+		Boolean pokus=false;
+		while (uzle.isEmpty()== false )
+		{
+			pokus=uzle.get(0).hladaj(uzle);
+			if (pokus == true)
+			{
+				 System.out.println("nasla sa cesta");
+				return true;
+			}
+			
+		}
+	
+		   System.out.println("nenasiel sa vysledok");
+		   return false;
+	}
+	
 
 	void pridajvozidlo(Vozidlo voz)
 	{	

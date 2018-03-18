@@ -16,6 +16,14 @@ public Vozidlo(int idcko,int typimp,int x,int y,int orient)
 	ysur = y;
 	smer = orient;
  }
+public Vozidlo(Vozidlo imp)
+{
+	typ= imp.getTyp();
+	id = imp.getId();
+	xsur = imp.getXsur();
+	ysur = imp.getYsur();
+	smer = imp.getSmer();
+}
 
 
 public int getTyp() {
