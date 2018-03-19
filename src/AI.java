@@ -38,6 +38,21 @@ public class AI {
 		// raw input data
 	       xmax=6;
 	       ymax=6;
+	       
+	       pridajvozidlo(new Vozidlo(1,2,2,2,0)); //cislo , dlzka , x, y, vodorvne 0 zvyslo 1
+	       pridajvozidlo(new Vozidlo(2,3,0,0,0));
+	       pridajvozidlo(new Vozidlo(3,2,0,1,1));
+	       pridajvozidlo(new Vozidlo(4,2,3,0,1));
+	       pridajvozidlo(new Vozidlo(5,3,4,0,1));
+	       pridajvozidlo(new Vozidlo(6,2,1,1,0));
+	       pridajvozidlo(new Vozidlo(7,2,0,3,0));
+	       pridajvozidlo(new Vozidlo(8,2,3,4,0));
+	       pridajvozidlo(new Vozidlo(9,2,1,4,1));
+	       pridajvozidlo(new Vozidlo(10,2,2,3,1));
+	       pridajvozidlo(new Vozidlo(11,2,5,3,1));
+	       pridajvozidlo(new Vozidlo(12,2,2,5,0));
+	       pridajvozidlo(new Vozidlo(13,2,4,5,0));
+	       /*
 	       pridajvozidlo(new Vozidlo(1,2,3,2,0)); //cislo , dlzka , x, y, vodorvne 0 zvyslo 1
 	       pridajvozidlo(new Vozidlo(2,2,3,0,0));
 	       pridajvozidlo(new Vozidlo(3,3,2,0,1));
