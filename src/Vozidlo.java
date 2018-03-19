@@ -7,7 +7,7 @@ public class Vozidlo {
  private int typ;
  
 
-
+// konstruktor
 public Vozidlo(int idcko,int typimp,int x,int y,int orient)
  {
 	typ=typimp;
@@ -16,6 +16,7 @@ public Vozidlo(int idcko,int typimp,int x,int y,int orient)
 	ysur = y;
 	smer = orient;
  }
+// konstruktor na uplnu kopiu
 public Vozidlo(Vozidlo imp)
 {
 	typ= imp.getTyp();

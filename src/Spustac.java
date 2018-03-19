@@ -1,9 +1,9 @@
 
 public class Spustac {
 
-	
+	// TATO TRIEDA SLUZI LEN AKO SPUSTAC
     public static void main (String[] args)
    	{
-    	AI ai= new AI();
+    	 new AI();
    	}
 }

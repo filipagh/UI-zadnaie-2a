@@ -10,6 +10,12 @@ public class Prikaz {
 		 pocet=kolko;
 		 smer = smerr;
 	 }
+	 public Prikaz(Prikaz p)
+	 {
+		 id=p.getId();
+		 pocet=p.getPocet();
+		 smer = p.getSmer();
+	 }
 
 	public int getId() {
 		return id;
