@@ -25,6 +25,11 @@ public Vozidlo(Vozidlo imp)
 	smer = imp.getSmer();
 }
 
+public int hash()
+{
+	int hash=((typ^3+(typ*typ))*8 * id^(2/3)+id*7*4*(xsur^(ysur^2)+6)* (smer^id*7));
+	return hash;
+}
 
 public int getTyp() {
 	return typ;

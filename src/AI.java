@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class AI {
@@ -11,7 +12,7 @@ public class AI {
 	private List<Uzol> uzle;
 	
 	public AI() {
-		
+		long zaciatok_cas=System.nanoTime();
 	/*
 		System.out.println("zadaj x dlzku mriezky : ");
 
@@ -31,19 +32,30 @@ public class AI {
 	   */    
 		vozpark = new ArrayList<Vozidlo>();
 		uzle = new ArrayList<Uzol>();
-	       xmax=10;
+	       xmax=6;
 	       ymax=6;
-	       pridajvozidlo(new Vozidlo(1,2,2,3,0)); //cislo , dlzka , x, y, vodorvne 0 zvyslo 1
-	       pridajvozidlo(new Vozidlo(2,3,7,3,1));
-	      
-	       Uzol zac_uzol = new Uzol(vozpark,xmax,ymax);    
-	       uzle.add(zac_uzol);
+	       pridajvozidlo(new Vozidlo(1,2,1,2,0)); //cislo , dlzka , x, y, vodorvne 0 zvyslo 1
+	       pridajvozidlo(new Vozidlo(2,2,0,0,0));
+	       pridajvozidlo(new Vozidlo(3,3,0,1,1));
+	       pridajvozidlo(new Vozidlo(4,3,3,1,1));
+	       pridajvozidlo(new Vozidlo(5,3,5,0,1));
+	       pridajvozidlo(new Vozidlo(6,2,0,4,1));
+	       pridajvozidlo(new Vozidlo(7,2,4,4,0));
+	       pridajvozidlo(new Vozidlo(8,3,2,5,0));
 	       
+	        HashSet<Long> hashset = new HashSet<Long>();
+	       Uzol zac_uzol = new Uzol(vozpark,xmax,ymax,hashset);    
+	       uzle.add(zac_uzol);
+	     
 	       ries();
 	       
-	
-	
+	       long koniec_cas=System.nanoTime();
 	       
+	       System.out.println("hladanie riesenia trvalo "+(float)(koniec_cas-zaciatok_cas)/1000000000+" sekund" );
+	       
+	
+	
+	     
 	       
 	      /*
 	       for (int i = 0; i < poc_vozidel; i++) 
