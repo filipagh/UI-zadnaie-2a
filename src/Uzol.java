@@ -146,7 +146,7 @@ public class Uzol {
 									{
 									imp_uzle.add(1, expuzol);
 									}
-										
+									//vozpark.hashCode();
 									hashset.add(hashnovy);
 								}
 								else   // dany uzol uz sme riesili a teda zmenu zahodime
@@ -344,13 +344,7 @@ public class Uzol {
 			}
 			
 		}
-		int poc=0;
-		for(Prikaz zoz: zoznam) 
-		{			
-			poc=poc+1;
-			System.out.println(poc+". vozidlo c. "+zoz.getId()+" pohni smerom "+zoz.getSmer()+" o "+zoz.getPocet());
-		}		
-		System.out.println(poc+1+". vozidlo c. 1 pohni smerom 0 o "+(xsur-(vozpark.get(0).getXsur())-vozpark.get(0).getTyp()));
+		
 		
 		
 		//vysledna matica vypis
@@ -385,5 +379,17 @@ public class Uzol {
 	
 		
 
+	}
+	
+	
+	void vypiscestu()
+	{
+		int poc=0;
+		for(Prikaz zoz: zoznam) 
+		{			
+			poc=poc+1;
+			System.out.println(poc+". vozidlo c. "+zoz.getId()+" pohni smerom "+zoz.getSmer()+" o "+zoz.getPocet());
+		}		
+		System.out.println(poc+1+". vozidlo c. 1 pohni smerom 0 o "+(xsur-(vozpark.get(0).getXsur())-vozpark.get(0).getTyp()));
 	}
 }
