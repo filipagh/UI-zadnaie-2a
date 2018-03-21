@@ -41,7 +41,7 @@ public class Uzol {
 	hashset=hashset_i;
 	}
 
-	public boolean hladaj(List<Uzol> imp_uzle)  //metoda na analyzu uzla
+	public boolean hladaj(List<Uzol> imp_uzle,int sposob)  //metoda na analyzu uzla
 	{
 		
 		matica = new int[ysur][xsur];   		// pri analyze vytvorenie matice kde zistujem stav
@@ -138,7 +138,15 @@ public class Uzol {
 									Prikaz exp = new Prikaz(n.getId(),n.getXsur()-x,2);    
 									zoznam_exp.add(exp);
 									Uzol expuzol = new Uzol(vozpark_exp,zoznam_exp,xsur,ysur,hashset);
+									if (sposob==0)
+									{
 									imp_uzle.add(expuzol);
+									}
+									else
+									{
+									imp_uzle.add(1, expuzol);
+									}
+										
 									hashset.add(hashnovy);
 								}
 								else   // dany uzol uz sme riesili a teda zmenu zahodime
@@ -188,7 +196,14 @@ public class Uzol {
 									Prikaz exp = new Prikaz(n.getId(),x-n.getXsur()+1,0);
 									zoznam_exp.add(exp);
 									Uzol expuzol = new Uzol(vozpark_exp,zoznam_exp,xsur,ysur,hashset);
+									if (sposob==0)
+									{
 									imp_uzle.add(expuzol);
+									}
+									else
+									{
+									imp_uzle.add(1, expuzol);
+									}
 									hashset.add(hashnovy);
 								}
 								else   // dany uzol uz sme riesili a teda zmenu zahodime
@@ -242,7 +257,14 @@ public class Uzol {
 									Prikaz exp = new Prikaz(n.getId(),n.getYsur()-y,3);
 									zoznam_exp.add(exp);
 									Uzol expuzol = new Uzol(vozpark_exp,zoznam_exp,xsur,ysur,hashset);
+									if (sposob==0)
+									{
 									imp_uzle.add(expuzol);
+									}
+									else
+									{
+									imp_uzle.add(1, expuzol);
+									}
 									hashset.add(hashnovy);
 								}
 								else   // dany uzol uz sme riesili a teda zmenu zahodime
@@ -293,7 +315,14 @@ public class Uzol {
 									Prikaz exp = new Prikaz(n.getId(),y-n.getYsur()+1,1);													
 									zoznam_exp.add(exp);
 									Uzol expuzol = new Uzol(vozpark_exp,zoznam_exp,xsur,ysur,hashset);
+									if (sposob==0)
+									{
 									imp_uzle.add(expuzol);
+									}
+									else
+									{
+									imp_uzle.add(1, expuzol);
+									}
 									hashset.add(hashnovy);
 								}
 								else   // dany uzol uz sme riesili a teda zmenu zahodime
@@ -306,6 +335,8 @@ public class Uzol {
 					}
 				}
 				// odstran aktualny uzol zo zoznamu uzlov
+		
+				
 				imp_uzle.remove(0);
 				
 				

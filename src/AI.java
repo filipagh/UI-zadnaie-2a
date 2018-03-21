@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashSet;
@@ -13,32 +18,54 @@ public class AI {
 	
 	public AI() {
 		// pocitanie casu
+		
+		 xmax=6;
+	     ymax=6;
+		 vozpark = new ArrayList<Vozidlo>();
+	   	 uzle = new ArrayList<Uzol>();
+	   	 
+		 Scanner scanIn = new Scanner(System.in);
+		 System.out.println("zadaj nazov suboru vstupu");
+		 String fileName = scanIn.nextLine();
+		 File f = new File(fileName);
+		 Scanner scanfile = null;
+		try {
+			scanfile = new Scanner(f);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		poc_vozidel= scanfile.nextInt();
+		xmax= scanfile.nextInt();
+		ymax= scanfile.nextInt();
+		
+		 System.out.println(poc_vozidel);
+		 
+		 for (int l=1;l<=poc_vozidel;l++)
+		 {
+			 pridajvozidlo(new Vozidlo(scanfile.nextInt(),scanfile.nextInt(),scanfile.nextInt(),scanfile.nextInt(),scanfile.nextInt()));
+		 }
+		 
+		 
+		 scanfile.close();
 		long zaciatok_cas=System.nanoTime();
+		
+		scanIn.close();
+		
+		
 	/*
-		System.out.println("zadaj x dlzku mriezky : ");
-
+		
 	     
-	       Scanner scanIn = new Scanner(System.in);
-	       xmax = scanIn.nextInt();
-
-	       System.out.println("zadaj y dlzku mriezky : ");
-	
-	       ymax = scanIn.nextInt();
-	       
-	       System.out.println("zadaj pocet vozidiel : ");
-	       
-	       poc_vozidel = scanIn.nextInt();
-    
-	       System.out.println("mriezka je "+xmax+" : "+ymax+"    a pocet vozidel je "+poc_vozidel);
+	    
+	    
 	   */    
 		// dadefinovanie zoznamu vozparku a uzlov
-		vozpark = new ArrayList<Vozidlo>();
-		uzle = new ArrayList<Uzol>();
+		
 		
 		// raw input data
-	       xmax=6;
-	       ymax=6;
-	       
+	      
+	      /*
 	       pridajvozidlo(new Vozidlo(1,2,2,2,0)); //cislo , dlzka , x, y, vodorvne 0 zvyslo 1
 	       pridajvozidlo(new Vozidlo(2,3,0,0,0));
 	       pridajvozidlo(new Vozidlo(3,2,0,1,1));
@@ -62,7 +89,9 @@ public class AI {
 	       pridajvozidlo(new Vozidlo(7,2,1,4,0));
 	       pridajvozidlo(new Vozidlo(8,2,4,5,0));
 	       pridajvozidlo(new Vozidlo(9,2,0,4,1));
-	      /*
+	      
+
+	 /*
 	       pridajvozidlo(new Vozidlo(1,2,1,2,0)); //cislo , dlzka , x, y, vodorvne 0 zvyslo 1
 	       pridajvozidlo(new Vozidlo(2,2,0,0,0));
 	       pridajvozidlo(new Vozidlo(3,3,0,1,1));
@@ -71,8 +100,10 @@ public class AI {
 	       pridajvozidlo(new Vozidlo(6,2,0,4,1));
 	       pridajvozidlo(new Vozidlo(7,2,4,4,0));
 	       pridajvozidlo(new Vozidlo(8,3,2,5,0));
+	      /* 
+	       pridajvozidlo(new Vozidlo(1,2,1,2,0)); //cislo , dlzka , x, y, vodorvne 0 zvyslo 1
+	       pridajvozidlo(new Vozidlo(2,3,4,1,1));
 	       */
-	       
 	       // def hashset
 	       HashSet<Long> hashset = new HashSet<Long>();
 	       
@@ -80,8 +111,10 @@ public class AI {
 	       Uzol zac_uzol = new Uzol(vozpark,xmax,ymax,hashset);    
 	       uzle.add(zac_uzol);
 	     
+	       
+	       
 	       // pusti metodu ries
-	       ries();
+	       ries(0);
 	       // koniec ratania casu
 	       long koniec_cas=System.nanoTime();
 	       
@@ -140,22 +173,25 @@ public class AI {
 		       
 	       	//scanIn.close();   
 	}
-	Boolean ries()
+	Boolean ries(int sposob)
 	{
 		// pokus - miesto kde sa zapise vysledok t/f hladania
+		int poc_ries=1;
 		Boolean pokus=false;
 		while (uzle.isEmpty()== false )  // kym mam v zozname uzle tak hladaj
 		{
-			pokus=uzle.get(0).hladaj(uzle);  
+			poc_ries=poc_ries+1;
+			pokus=uzle.get(0).hladaj(uzle,sposob);  
 			if (pokus == true)                   // ak sa najde riesenie vypis nasla sa cesta a ukonci hladanie
 			{
-				 System.out.println("nasla sa cesta");
+				 System.out.println("nasla sa cesta a prehladalo sa "+poc_ries+" uzlov");
+				 
 				return true;
 			}
 			
 		}
 			// nenasla sa cest 
-		   System.out.println("nenasiel sa vysledok");
+		   System.out.println("nenasiel sa vysledok a prehladalo sa "+poc_ries+" uzlov");
 		   return false;
 	}
 	
