@@ -17,7 +17,7 @@ public class Uzol {
 	private int[][] matica;
 	
 	public Uzol (List<Vozidlo> importuj,int xi,int yi,HashSet<Long> hashset_i)
-	{
+	{	
 	xsur= xi;
 	ysur= yi;
 	vozpark = importuj;	
@@ -46,7 +46,7 @@ public class Uzol {
 		
 		matica = new int[ysur][xsur];   		// pri analyze vytvorenie matice kde zistujem stav
 		
-			for(Vozidlo n : vozpark) 
+			for(Vozidlo n : vozpark) 			//prechadzam kazde vozidlo
 		{			
 			
 				// zapis vozidiel do matice
@@ -70,18 +70,7 @@ public class Uzol {
 			
 				
 		}
-//			vykreslenie matice 
-			/*
-			for(int i=0; i<ysur;i++)      
-			{
-				for(int o=0; o<xsur;o++) 
-				{
-				System.out.print(matica[i][o]+" ");
-				}
-				System.out.println();
-			}
-			*/
-		
+
 			
 			
 			//overenie ci nase "hlavne" auto sa vie dostat von
@@ -90,7 +79,7 @@ public class Uzol {
 			if (matica[vozpark.get(0).getYsur()][i]!= 0) //ci by nabural
 			{
 				
-				// nabural 
+				// ak sa nevie dostat von skusam kazde vozidlo kazdu moznu poziciu
 				for(Vozidlo n : vozpark) // posunutie kazdeho vozdla 
 				{					
 					int x=n.getXsur();
@@ -121,7 +110,6 @@ public class Uzol {
 						    }
 							
 							
-                            
 							vozpark_exp.get(n.getId()-1).setXsur(n.getXsur()-(n.getXsur()-x));   // prepisanie suradnic 	
 							
 							// hash stavu
@@ -146,7 +134,6 @@ public class Uzol {
 									{
 									imp_uzle.add(1, expuzol);
 									}
-									//vozpark.hashCode();
 									hashset.add(hashnovy);
 								}
 								else   // dany uzol uz sme riesili a teda zmenu zahodime
@@ -375,13 +362,14 @@ public class Uzol {
 			System.out.println();
 		}
 		
+		// vrat ze si nasiel cestu
 		return (true);	
 	
 		
 
 	}
 	
-	
+	// vypise cestu od zacitku do konca
 	void vypiscestu()
 	{
 		int poc=0;

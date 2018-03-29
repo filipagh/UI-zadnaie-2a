@@ -16,12 +16,10 @@ public class AI {
 	private List<Uzol> uzle;
 	private int sposob;
 	public AI() {
-		// pocitanie casu
 		
-		 xmax=6;
-	     ymax=6;
-		 vozpark = new ArrayList<Vozidlo>();
-	   	 uzle = new ArrayList<Uzol>();
+		
+		// nacitavanie vstupu zo suboru
+		 
 	   	 
 		 Scanner scanIn = new Scanner(System.in);
 		 System.out.println("zadaj nazov suboru vstupu");
@@ -41,36 +39,24 @@ public class AI {
 		xmax= scanfile.nextInt();
 		ymax= scanfile.nextInt();
 		
-	
+		vozpark = new ArrayList<Vozidlo>();
+	   	uzle = new ArrayList<Uzol>();
 		 
 		 for (int l=1;l<=poc_vozidel;l++)
 		 {
 			 pridajvozidlo(new Vozidlo(scanfile.nextInt(),scanfile.nextInt(),scanfile.nextInt(),scanfile.nextInt(),scanfile.nextInt()));
 		 }
 		 
-		 
+		 // koniec citania vstupu
 		 scanfile.close();
-		long zaciatok_cas=System.nanoTime();
+		 scanIn.close();
 		
-		scanIn.close();
-		
-		
-	/*
-		
-	     
-	    
-	    
+		 
+		 // pocitanie casu zaciatok
+		 long zaciatok_cas=System.nanoTime();
 	
-	 /*
-	       pridajvozidlo(new Vozidlo(1,2,1,2,0)); //cislo , dlzka , x, y, vodorvne 0 zvyslo 1
-	       pridajvozidlo(new Vozidlo(2,2,0,0,0));
-	       pridajvozidlo(new Vozidlo(3,3,0,1,1));
-	       pridajvozidlo(new Vozidlo(4,3,3,1,1));
-	       pridajvozidlo(new Vozidlo(5,3,5,0,1));
-	       pridajvozidlo(new Vozidlo(6,2,0,4,1));
-	       pridajvozidlo(new Vozidlo(7,2,4,4,0));
-	       pridajvozidlo(new Vozidlo(8,3,2,5,0));
-*/
+	
+	
 	       // def hashset
 	       HashSet<Long> hashset = new HashSet<Long>();
 	       
@@ -78,15 +64,6 @@ public class AI {
 	       Uzol zac_uzol = new Uzol(vozpark,xmax,ymax,hashset);    
 	       uzle.add(zac_uzol);
 	     
-	       
-	       
-	       // pusti metodu ries
-	       if (sposob == 1)
-	    	   System.out.println("prehldavanie do hlbky");
-	       else
-	    	   System.out.println("prehldavanie do sirky");
-	       
-	       
 	       // vykresli uvodnu maticu (parkovisko)
 	       System.out.println("uvodna matica ");
 			int [][] matica = new int[ymax][xmax];
@@ -115,59 +92,42 @@ public class AI {
 					System.out.println();
 				}
 	       
-	       ries(sposob);
-	       // koniec ratania casu
-	
-	       
-	       
-	       // spracovanie vysleku
-	       
+	       // vypis sposob prehladavaina
+	       if (sposob == 1)
+	    	   System.out.println("prehldavanie do hlbky");
+	       else
+	    	   System.out.println("prehldavanie do sirky"); 
 	      
-				
-				
+	       // pusti metodu ries
+	       ries(sposob);	
 	      
 	       // vypis dlzku trvania
 	       System.out.println("hladanie riesenia trvalo "+(float)(koniec_cas-zaciatok_cas)/1000000000+" sekund" );
 	       
-	
-	
-	     
-	       
-	      /*
-	       for (int i = 0; i < poc_vozidel; i++) 
-			{
-			   if (i == 0) 
-			   {
-				   System.out.println(" : ");
-			   }					   
-	    	   pridajvozidlo();
-			
-			}
-		    */   
-		       
-		       
-	       	//scanIn.close();   
 	}
 	Boolean ries(int sposob)
 	{
 		// pokus - miesto kde sa zapise vysledok t/f hladania
-		int poc_ries=1;
-		Boolean pokus=false;
+		int poc_ries=0; //pocet prehladanych uzlov
+		Boolean pokus=false;	// pokus o najdenie postupnosti
 		while (uzle.isEmpty() == false)  // kym mam v zozname uzle tak hladaj
 		{
 			poc_ries=poc_ries+1;
-			pokus=uzle.get(0).hladaj(uzle,sposob);  
+			pokus=uzle.get(0).hladaj(uzle,sposob);        // spracuj dalsi uzol 
 			if (pokus == true)                   // ak sa najde riesenie vypis nasla sa cesta a ukonci hladanie
 			{
+				   // koniec ratania casu
 			       koniec_cas=System.nanoTime();
 				System.out.println("nasla sa cesta a prehladalo sa "+poc_ries+" uzlov celkovo uzlov "+(uzle.size()+poc_ries) );
-				// uzle.get(0).vypiscestu();
+				//vypis cestu
+				uzle.get(0).vypiscestu();
 				return true;
 			}
 			
 		}
+		   // koniec ratania casu
 	       koniec_cas=System.nanoTime();	
-		// nenasla sa cest 
+	       // nenasla sa cest 
 		   System.out.println("nenasiel sa vysledok a prehladalo sa "+poc_ries+" uzlov");
 		   return false;
 	}
